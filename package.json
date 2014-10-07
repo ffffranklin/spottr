@@ -1,0 +1,23 @@
+{
+    "name": "spottr",
+    "version": "0.0.1",
+    "description": "A tumblr blog proxy that converts XML tumblr logs to JSON",
+    "homepage": "https://github.com/ffffranklin/spottr",
+    "bugs": "https://github.com/ffffranklin/spottr/issues",
+    "main": "index.js",
+    "scripts": {
+        "test": "npm run test node && npm run test browser"
+        "test-node": "mocha -R spec ./test/node/index.js",
+        "test-browser": "mocha-phantomjs ./test/browser/index.html"}
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ffffranklin/spottr.git"
+    },
+    "author": {
+        "name": "Franklin Clark",
+        "email": "",
+        "url": "https://github.com/ffffranklin"
+    },
+    "license": "MIT"
+}
