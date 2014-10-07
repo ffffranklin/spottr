@@ -7,11 +7,12 @@
 
 var PORT = 8080;
 var http = require('http');
+var SpottrServer = require('./server/spottr-server');
+var spottrServer = new SpottrServer();
 
 http.createServer(function (req, res) {
 
     var url;
-
     
     // check if url path starts with content and has a character after it
     if (req.url.match(/^\/content\/\S+/)) {
@@ -56,3 +57,4 @@ http.createServer(function (req, res) {
 
 console.log('Spottr: Created Server "http://localhost:%s"', PORT);
 
+spottrServer.start();
