@@ -7,8 +7,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test-node && npm run test-browser",
-    "test-node": "mocha -R spec ./spec/node/index.js",
-    "test-browser": "mocha-phantomjs ./spec/browser/index.html"
+    "test-node": "mocha -R spec ./test/node/index.js",
+    "test-browser": "mocha-phantomjs ./test/browser/index.html"
   },
   "repository": {
     "type": "git",
