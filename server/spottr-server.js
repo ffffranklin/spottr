@@ -5,6 +5,8 @@
  */
 
 var http = require('http');
+var url = require('url');
+var _ = require('lodash');
 var parseString = require('xml2js').parseString;
 
 function SpottrServer(){
@@ -23,18 +25,39 @@ SpottrServer.prototype.start = function () {
 
     http.createServer(function (req, res) {
 
-        var url;
+        var contentURL;
+        var urlParts = url.parse(req.url, true);
+        var query = urlParts.query;
+        var formatter = function (options) {
+            var template = _.extend({
+                open: '',
+                close: ''
+            }, options);
+            return function (obj) {
+                return template.open + JSON.stringify(obj) + template.close;
+            }
+        };
+        var format;
+
+        if (query.hasOwnProperty('callback')) {
+            format = formatter({
+                open: query.callback + '(',
+                close: ');'
+            });
+        } else {
+            format = formatter();
+        }
 
         // check if url path starts with content and has a character after it
         if (req.url.match(/^\/content\/\S+/)) {
 
-            url = _this.getContentURL(req.url);
+            contentURL = _this.getContentURL(req.url);
 
-            if (url) {
+            if (contentURL) {
 
-                console.log('Spottr: Requesting source of "%s"', url);
+                console.log('Spottr: Requesting source of "%s"', contentURL);
 
-                http.get('http://' + url, function (response) {
+                http.get('http://' + contentURL, function (response) {
                     var xml = '';
 
                     res.writeHeader(200, {"Content-Type": "application/json"});
@@ -60,7 +83,7 @@ SpottrServer.prototype.start = function () {
 
                             // TODO make sure to end response if this 'end' event never happens
                             parseString(data, options, function (err, result) {
-                                res.write(JSON.stringify(result));
+                                res.write(format(result));
                                 res.end();
                             });
                         })
