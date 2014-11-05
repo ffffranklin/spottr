@@ -1,14 +1,14 @@
 {
   "name": "spottr",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "description": "A tumblr blog proxy that converts XML tumblr logs to JSON",
   "homepage": "https://github.com/ffffranklin/spottr",
   "bugs": "https://github.com/ffffranklin/spottr/issues",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test node && npm run test browser",
-    "test-node": "mocha -R spec ./test/node/index.js",
-    "test-browser": "mocha-phantomjs ./test/browser/index.html"
+    "test": "npm run test-node && npm run test-browser",
+    "test-node": "mocha -R spec ./spec/node/index.js",
+    "test-browser": "mocha-phantomjs ./spec/browser/index.html"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "mocha": "^1.21.5"
+    "chai": "^1.9.2",
+    "mocha": "^1.21.5",
+    "mocha-phantomjs": "^3.5.1",
+    "phantomjs": "^1.9.12"
   },
   "dependencies": {
     "lodash": "^2.4.1",
