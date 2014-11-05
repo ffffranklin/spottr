@@ -37,7 +37,7 @@ SpottrServer.prototype.start = function () {
                 http.get('http://' + url, function (response) {
                     var xml = '';
 
-                    res.writeHeader(200, {"Content-Type": "text/plain"});
+                    res.writeHeader(200, {"Content-Type": "application/json"});
 
                     console.log('Spottr: Response received with status code %s', response.statusCode);
 
@@ -47,10 +47,20 @@ SpottrServer.prototype.start = function () {
                             xml += chunk;
                         });
                         response.on('end', function () {
+                            var options = {
+                                trim: true,
+                                // ommit the root node
+                                explicitRoot: false,
+                                // only put values in array if there are multiple values
+                                explicitArray: false
+                            };
+                            var dataMatch = xml.match(/<data>([\s\S]*)<\/data>/i);
+                            var data = dataMatch[0] || void 0;
+                            if (!data) throw "Invalid format.  Data xml node not found";
+
                             // TODO make sure to end response if this 'end' event never happens
-                            parseString(xml, function (err, result) {
-                                console.log(result);
-                                res.write(xml);
+                            parseString(data, options, function (err, result) {
+                                res.write(JSON.stringify(result));
                                 res.end();
                             });
                         })
