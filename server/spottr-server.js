@@ -28,6 +28,21 @@ SpottrServer.prototype.start = function () {
         var contentURL;
         var urlParts = url.parse(req.url, true);
         var query = urlParts.query;
+        var traverseItemNodes = function traversItemNodes(obj) {
+            var result = _.extend({}, obj);
+            var posts = result['block:Posts'];
+            var members = result['block:GroupMembers'];
+            if ( posts && posts['item']) {
+                result['block:Posts'] = posts['item'];
+            }
+            if (members && members['block:GroupMember']) {
+                var member = members['block:GroupMember'];
+                if (member && member['item']){
+                    result['block:GroupMembers']['block:GroupMember'] = member['item'];
+                }
+            }
+            return result;
+        };
         var formatter = function (options) {
             var template = _.extend({
                 open: '',
@@ -83,7 +98,9 @@ SpottrServer.prototype.start = function () {
 
                             // TODO make sure to end response if this 'end' event never happens
                             parseString(data, options, function (err, result) {
-                                res.write(format(result));
+                                result = traverseItemNodes(result);
+                                result = format(result);
+                                res.write(result);
                                 res.end();
                             });
                         })
