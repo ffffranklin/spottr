@@ -43,7 +43,7 @@ SpottrServer.prototype.start = function () {
             }
             return result;
         };
-        var formatter = function (options) {
+        var formatter = function formatter(options) {
             var template = _.extend({
                 open: '',
                 close: ''
