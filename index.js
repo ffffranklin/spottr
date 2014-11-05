@@ -1,6 +1,2 @@
-/**
- * Spottr
- */
-var SpottrServer = require('./server/spottr-server');
-var spottrServer = new SpottrServer();
-spottrServer.start();
+
+module.exports = require('./lib/spottr-server');
