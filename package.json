@@ -1,6 +1,6 @@
 {
   "name": "spottr",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A tumblr blog proxy that converts XML tumblr logs to JSON",
   "homepage": "https://github.com/ffffranklin/spottr",
   "bugs": "https://github.com/ffffranklin/spottr/issues",
