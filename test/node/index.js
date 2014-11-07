@@ -1,10 +1,7 @@
 describe('Spottr', function () {
-    beforeEach(function () {
-/*        var SpottrServer = require('./lib/spottr-server');
-        var spottrServer = new SpottrServer();
-        spottrServer.start();*/
-    })
-    describe('when started', function () {
-        it('should...');
+    it('should start', function () {
+         var Server = require('../../lib/spottr-server');
+         var server = new Server();
+         server.start();
     });
 })
