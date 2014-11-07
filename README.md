@@ -16,7 +16,7 @@ The following template is required to create a valid content source for spottr
 Spottr XML Theme
 https://github.com/ffffranklin/spottr
 
-Version: 1.0
+Version: 0.0.10
 
 Made by Franklin Clark 
 
