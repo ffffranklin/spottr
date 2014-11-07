@@ -7,7 +7,8 @@ A tumblr blog proxy that converts XML tumblr logs to JSON
 
 ## Tumblr Template
 
-The following template is required to create a valid content source for spottr 
+The following template is required to create a valid tumblr content source for 
+spottr. Just copy the XML below and place it in your tumblr theme HTML editor. 
 
 ```xml
 <?xml version="1.0"?>
