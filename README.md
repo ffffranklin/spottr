@@ -17,7 +17,7 @@ spottr. Just copy the XML below and place it in your tumblr theme HTML editor.
 Spottr XML Theme
 https://github.com/ffffranklin/spottr
 
-Version: 0.0.10
+Version: 0.0.11
 
 Made by Franklin Clark 
 
