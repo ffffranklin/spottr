@@ -50,6 +50,7 @@ SpottrServer.prototype.start = function () {
                             // TODO make sure to end response if this 'end' event never happens
                             parseString(xml, function (err, result) {
                                 console.log(result);
+                                // TODO Fix this
                                 res.write(xml);
                                 res.end();
                             });
